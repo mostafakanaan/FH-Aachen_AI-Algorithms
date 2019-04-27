@@ -20,8 +20,6 @@
 --  Read the full text in the LICENSE.GPL file in the doc directory.
 
 
-
-
 function Class(members)
   members = members or {}
   local mt = {
@@ -40,26 +38,3 @@ function Class(members)
   members.copy = members.copy or copy
   return mt
 end
-
-
----- Benutzung:
---[[
-NeueKlasse = {}
-local NeueKlasse_mt = Class(NeueKlasse)
-
-function NeueKlasse:new(arg1, arg2, arg3)
-   
-   -- Initialisierung der Members
-   local arg1 = arg1
-   local arg2 = arg2
-   local arg3 = arg3
-   
-   return setmetatable( {arg1 = arg1, arg2=arg2, arg3=arg3}, NeueKlasse_mt)
-end
-
-
-function test()
-   local a = NeueKlasse:new(1,2,3)
-   local b = NeueKlasse:new(4,5,6)
-
---]]
