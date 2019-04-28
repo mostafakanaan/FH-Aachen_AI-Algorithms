@@ -61,7 +61,7 @@ end
 function PriorityQueue:heapify(Tree)
     --A Tree with 1 or less Nodes is a MinHeap
     if #Tree > 1 then
-        --Otherwise bubble up/down and build a MinHeap!
+        --Otherwise bubble down and build a MinHeap!
         local half = math.floor(#Tree / 2)
         for i = half, 1, -1 do
             self:bubbleDown(Tree, #Tree, i)
@@ -83,8 +83,6 @@ function PriorityQueue:bubbleUp(Tree, i)
 
         if Tree[i] < Tree[parent] then
             Tree[i], Tree[parent] = Tree[parent], Tree[i]
-        else
-            self:bubbleUp(Tree,parent)
         end
     end
 end
