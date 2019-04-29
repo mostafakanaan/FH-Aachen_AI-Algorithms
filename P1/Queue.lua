@@ -115,7 +115,7 @@ end
 function PriorityQueue:push(Element)
     table.insert(self.heap, Element)
     self.size = self.size + 1
-    self:bubbleUp(self.heap, self.size) --TODO:bubbleUp not working properly!
+    self:bubbleUp(self.heap, self.size)
 end
 
 function PriorityQueue:pop()
