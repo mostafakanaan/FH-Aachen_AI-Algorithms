@@ -13,7 +13,6 @@ Queue = {} --FIFO/LIFO
 PriorityQueue = {} --PRIO
 local Queue_mt = Class(Queue)
 local PriorityQueue_mt = Class(PriorityQueue)
-
 ------------------------------------------FIFO/LIFO Queue---------------------------------------------
 function Queue:new(Queuetype, Elements)
     Elements = Elements or {}
@@ -81,8 +80,9 @@ function PriorityQueue:bubbleUp(Tree, i)
             parent = math.floor((i - 1) / 2)
         end
 
-        if Tree[i] < Tree[parent] then
+        if Tree[i].path_cost < Tree[parent].path_cost then
             Tree[i], Tree[parent] = Tree[parent], Tree[i]
+            self:bubbleUp(Tree,parent)
         end
     end
 end
@@ -92,11 +92,11 @@ function PriorityQueue:bubbleDown(Tree, n, i)
     l = 2 * i                           --Left Node
     r = 2 * i + 1                       --Right Node
 
-    if (l <= n and Tree[l] < Tree[smallest]) then
+    if (l <= n and Tree[l].path_cost < Tree[smallest].path_cost) then
         smallest = l
     end
 
-    if (r <= n and Tree[r] < Tree[smallest]) then
+    if (r <= n and Tree[r].path_cost < Tree[smallest].path_cost) then
         smallest = r
     end
 
@@ -134,6 +134,6 @@ end
 function PriorityQueue:printElements()
     print("_______")
     for key, element in pairs(self.heap) do
-        print(key .. ":" .. "|" .. element .. "|")
+        print(key .. ":" .. "|" .. element.state .. "|" .. element.path_cost .. "|")
     end
 end
